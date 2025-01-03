@@ -1,6 +1,7 @@
 package com.cap.assignement.capassignement.service.impl;
 
 import com.cap.assignement.capassignement.entities.Customers;
+import com.cap.assignement.capassignement.pojo.Customer;
 import com.cap.assignement.capassignement.repositories.CustomersRepository;
 import com.cap.assignement.capassignement.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,13 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomersRepository customersRepository;
 
     @Override
-    public Customers showInfo(Integer id) {
+    public Customer showInfo(Integer id) {
         Optional<Customers> customers = customersRepository.findById(id);
-        return customers.orElse(null);
+        return customers.map(Customer::entityToPojo).orElse(null);
+    }
+
+    @Override
+    public Optional<Customers> getCustomerById(Integer id) {
+        return customersRepository.findById(id);
     }
 }

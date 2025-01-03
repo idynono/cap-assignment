@@ -1,17 +1,16 @@
 package com.cap.assignement.capassignement.pojo;
 
 import com.cap.assignement.capassignement.entities.Accounts;
-import com.cap.assignement.capassignement.entities.Customers;
 import com.cap.assignement.capassignement.entities.Transactions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
 
 
     private Integer id;
-    private Customers customers;
-    private List<Transactions> transactions;
+    private List<Transaction> transactions;
 
     public Integer getId() {
         return id;
@@ -21,19 +20,11 @@ public class Account {
         this.id = id;
     }
 
-    public Customers getCustomers() {
-        return customers;
-    }
-
-    public void setIdCustomers(Customers customers) {
-        this.customers = customers;
-    }
-
-    public List<Transactions> getTransactions() {
+    public List<Transaction> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(List<Transactions> transactions) {
+    public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
 
@@ -41,7 +32,7 @@ public class Account {
 
         Account account = new Account();
         account.setId(entity.getId());
-        account.setIdCustomers(entity.getCustomers());
+        account.setTransactions(new ArrayList<>());
         return account;
     }
 

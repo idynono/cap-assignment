@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface CustomerService {
 
-    public Customer showInfo(Integer id);
+    Customer showInfo(Integer id);
 
-    public Optional<Customers> getCustomerById(Integer id);
+    Optional<Customers> getCustomerById(Integer id);
 }

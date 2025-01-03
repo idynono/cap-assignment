@@ -1,8 +1,15 @@
 package com.cap.assignement.capassignement.service;
 
+import com.cap.assignement.capassignement.entities.Accounts;
+import com.cap.assignement.capassignement.pojo.Transaction;
+
+import java.util.List;
+
 public interface TransactionService {
 
-    public void save(Long id,Integer amount , Integer accountId);
+    void save(Long id,Integer amount , Integer accountId);
 
-    public Long getNextId();
+    Long getNextId();
+
+    List<Transaction> getTransactions(Accounts accounts);
 }

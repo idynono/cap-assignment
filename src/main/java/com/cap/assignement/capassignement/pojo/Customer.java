@@ -1,6 +1,5 @@
 package com.cap.assignement.capassignement.pojo;
 
-
 import com.cap.assignement.capassignement.entities.Customers;
 
 public class Customer {
@@ -9,6 +8,7 @@ public class Customer {
     private Integer id;
     private String lastName;
     private String firstName;
+    private Account account;
 
     public String getLastName() {
         return lastName;
@@ -34,6 +34,14 @@ public class Customer {
         this.firstName = firstName;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     public static Customer entityToPojo(Customers entity) {
         Customer customer = new Customer();
         customer.setId(entity.getId());
@@ -41,6 +49,7 @@ public class Customer {
         customer.setFirstName(entity.getFirstName());
         return customer;
     }
+
 }
 
 

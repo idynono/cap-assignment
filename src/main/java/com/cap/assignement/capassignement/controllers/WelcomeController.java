@@ -1,7 +1,8 @@
 package com.cap.assignement.capassignement.controllers;
 
-import com.cap.assignement.capassignement.repositories.CustomersRepository;
+import com.cap.assignement.capassignement.pojo.Customer;
 import com.cap.assignement.capassignement.service.AccountService;
+import com.cap.assignement.capassignement.service.CustomerService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,18 +12,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class WelcomeController {
 
     @Autowired
-    private CustomersRepository customersRepository;
+    private CustomerService customerService;
 
     @Autowired
     private AccountService accountService;
 
     @GetMapping("/")
     public String index() {
-        return customersRepository.findAll().toString();
+        return "aaaaaaaaaaaaaaaaaaa";
     }
 
     @PostMapping("/accounts")
-    public void accounts(Integer idCustomer,Integer credit ) {
+    public void account(Integer idCustomer,Integer credit ) {
         accountService.createAccount(idCustomer, credit);
+    }
+
+    @GetMapping("/customers")
+    public Customer customer(Integer idCustomer) {
+        return customerService.showInfo(idCustomer);
     }
 }

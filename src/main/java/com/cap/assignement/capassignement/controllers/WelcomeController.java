@@ -11,15 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 @RestController
 public class WelcomeController {
 
-    @Autowired
-    private CustomerService customerService;
+    private final CustomerService customerService;
+
+    private final AccountService accountService;
 
     @Autowired
-    private AccountService accountService;
+    public WelcomeController(CustomerService customerService, AccountService accountService) {
+        this.customerService = customerService;
+        this.accountService = accountService;
+    }
 
     @GetMapping("/")
     public String index() {
-        return "aaaaaaaaaaaaaaaaaaa";
+        return "hello world";
     }
 
     @PostMapping("/accounts")

@@ -4,7 +4,6 @@ import com.cap.assignement.capassignement.entities.Accounts;
 import com.cap.assignement.capassignement.pojo.Transaction;
 import com.cap.assignement.capassignement.repositories.TransactionsRepository;
 import com.cap.assignement.capassignement.service.TransactionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +12,11 @@ import java.util.stream.Collectors;
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
-    @Autowired
-    private TransactionsRepository transactionsRepository;
+    private final TransactionsRepository transactionsRepository;
+
+    public TransactionServiceImpl(TransactionsRepository transactionsRepository) {
+        this.transactionsRepository = transactionsRepository;
+    }
 
     @Override
     public void save(Long id, Integer accountId, Integer amount) {

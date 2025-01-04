@@ -9,21 +9,21 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
-public class WelcomeController {
+public class CustomerManagementController {
 
     private final CustomerService customerService;
 
     private final AccountService accountService;
 
     @Autowired
-    public WelcomeController(CustomerService customerService, AccountService accountService) {
+    public CustomerManagementController(CustomerService customerService, AccountService accountService) {
         this.customerService = customerService;
         this.accountService = accountService;
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "hello world";
+    @GetMapping("/health-check")
+    public Boolean index() {
+        return true;
     }
 
     @PostMapping("/accounts")

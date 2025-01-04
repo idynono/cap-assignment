@@ -1,7 +1,9 @@
 # Capgemini assigment
 
-  Purpose of the project is to create account for already existing customers
-  this project use spring boot, spring security, jpa, h2 database
+  Purpose of the project is to be able to create account for already existing customers and to displey their informations
+  through REST apis 
+
+  This project use spring boot, spring security, jpa/hibernate/spring data using h2 database memory
 
 ## prerequisites
 - JDK 23

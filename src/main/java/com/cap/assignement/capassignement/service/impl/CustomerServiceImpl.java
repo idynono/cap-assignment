@@ -8,7 +8,6 @@ import com.cap.assignement.capassignement.repositories.AccountsRepository;
 import com.cap.assignement.capassignement.repositories.CustomersRepository;
 import com.cap.assignement.capassignement.service.CustomerService;
 import com.cap.assignement.capassignement.service.TransactionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -23,7 +22,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final TransactionService transactionService;
 
-    @Autowired
     public CustomerServiceImpl(CustomersRepository customersRepository, AccountsRepository accountsRepository, TransactionService transactionService) {
         this.customersRepository = customersRepository;
         this.accountsRepository = accountsRepository;

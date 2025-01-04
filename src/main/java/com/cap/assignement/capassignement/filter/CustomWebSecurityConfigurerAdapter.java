@@ -1,6 +1,6 @@
 package com.cap.assignement.capassignement.filter;
 
-import com.cap.assignement.capassignement.security.RestAuthenticationEntryPoint;
+import com.cap.assignement.capassignement.security.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +30,7 @@ public class CustomWebSecurityConfigurerAdapter {
                 .inMemoryAuthentication()
                 .withUser("user1")
                 .password("{noop}capgemini")
-                .authorities("ROLE_USER");
+                .authorities(Roles.ROLE_USER.toString());
     }
 
 

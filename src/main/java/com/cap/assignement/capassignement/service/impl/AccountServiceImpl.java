@@ -2,12 +2,10 @@ package com.cap.assignement.capassignement.service.impl;
 
 import com.cap.assignement.capassignement.entities.Accounts;
 import com.cap.assignement.capassignement.entities.Customers;
-import com.cap.assignement.capassignement.pojo.Account;
 import com.cap.assignement.capassignement.repositories.AccountsRepository;
 import com.cap.assignement.capassignement.service.AccountService;
 import com.cap.assignement.capassignement.service.CustomerService;
 import com.cap.assignement.capassignement.service.TransactionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +21,7 @@ public class AccountServiceImpl implements AccountService {
 
     private final AccountsRepository accountsRepository;
 
-    @Autowired
+
     public AccountServiceImpl(CustomerService customerService, TransactionService transactionService, AccountsRepository accountsRepository) {
         this.customerService = customerService;
         this.transactionService = transactionService;
@@ -47,10 +45,5 @@ public class AccountServiceImpl implements AccountService {
         } else {
             return false;
         }
-    }
-
-    @Override
-    public Account getAccount(Integer customerId) {
-        return Account.entityToPojo(accountsRepository.findByCustomerID(customerId));
     }
 }

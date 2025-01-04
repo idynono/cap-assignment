@@ -6,7 +6,6 @@ import com.cap.assignement.capassignement.pojo.Account;
 import com.cap.assignement.capassignement.pojo.Customer;
 import com.cap.assignement.capassignement.repositories.AccountsRepository;
 import com.cap.assignement.capassignement.repositories.CustomersRepository;
-import com.cap.assignement.capassignement.service.AccountService;
 import com.cap.assignement.capassignement.service.CustomerService;
 import com.cap.assignement.capassignement.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +16,19 @@ import java.util.Optional;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-    @Autowired
-    private CustomersRepository customersRepository;
 
-    //@Autowired
-    //private AccountService accountService;
+    private final CustomersRepository customersRepository;
 
-    @Autowired
-    private AccountsRepository accountsRepository;
+    private final AccountsRepository accountsRepository;
+
+    private final TransactionService transactionService;
 
     @Autowired
-    private TransactionService transactionService;
+    public CustomerServiceImpl(CustomersRepository customersRepository, AccountsRepository accountsRepository, TransactionService transactionService) {
+        this.customersRepository = customersRepository;
+        this.accountsRepository = accountsRepository;
+        this.transactionService = transactionService;
+    }
 
     @Override
     public Customer showInfo(Integer id) {
@@ -37,9 +38,11 @@ public class CustomerServiceImpl implements CustomerService {
             customerPojo = Customer.entityToPojo(customers.get());
             // to avoid circular reference
             Accounts accountsEntities = accountsRepository.findByCustomerID(id);
-            Account account = Account.entityToPojo(accountsEntities); //accountService.getAccount(id);
-            account.setTransactions(transactionService.getTransactions(accountsEntities));
-            customerPojo.setAccount(account);
+            if (accountsEntities != null) {
+                Account account = Account.entityToPojo(accountsEntities);
+                account.setTransactions(transactionService.getTransactions(accountsEntities));
+                customerPojo.setAccount(account);
+            }
         } else {
             return null;
         }

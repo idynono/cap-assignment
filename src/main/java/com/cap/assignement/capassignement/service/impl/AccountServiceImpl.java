@@ -16,14 +16,19 @@ import java.util.Optional;
 @Service
 public class AccountServiceImpl implements AccountService {
 
-    @Autowired
-    private CustomerService customerService;
+
+    private final CustomerService customerService;
+
+    private final TransactionService transactionService;
+
+    private final AccountsRepository accountsRepository;
 
     @Autowired
-    private TransactionService transactionService;
-
-    @Autowired
-    private AccountsRepository accountsRepository;
+    public AccountServiceImpl(CustomerService customerService, TransactionService transactionService, AccountsRepository accountsRepository) {
+        this.customerService = customerService;
+        this.transactionService = transactionService;
+        this.accountsRepository = accountsRepository;
+    }
 
     @Override
     @Transactional

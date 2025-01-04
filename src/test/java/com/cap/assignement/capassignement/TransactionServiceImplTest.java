@@ -3,7 +3,6 @@ package com.cap.assignement.capassignement;
 import com.cap.assignement.capassignement.entities.Accounts;
 import com.cap.assignement.capassignement.pojo.Transaction;
 import com.cap.assignement.capassignement.repositories.TransactionsRepository;
-import com.cap.assignement.capassignement.service.TransactionService;
 import com.cap.assignement.capassignement.service.impl.TransactionServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +22,7 @@ class TransactionServiceImplTest {
     private TransactionsRepository transactionsRepository;
 
     @InjectMocks
-    private TransactionService transactionService = new TransactionServiceImpl(transactionsRepository);
+    private TransactionServiceImpl transactionService;
 
     @BeforeEach
     void setUp() {

@@ -3,7 +3,6 @@ package com.cap.assignement.capassignement;
 import com.cap.assignement.capassignement.entities.Accounts;
 import com.cap.assignement.capassignement.entities.Customers;
 import com.cap.assignement.capassignement.repositories.AccountsRepository;
-import com.cap.assignement.capassignement.service.AccountService;
 import com.cap.assignement.capassignement.service.CustomerService;
 import com.cap.assignement.capassignement.service.TransactionService;
 import com.cap.assignement.capassignement.service.impl.AccountServiceImpl;
@@ -30,7 +29,7 @@ class AccountServiceImplTest {
     private AccountsRepository accountsRepository;
 
     @InjectMocks
-    private AccountService accountService = new AccountServiceImpl(customerService, transactionService, accountsRepository);
+    private AccountServiceImpl accountService;
 
     @BeforeEach
     void setUp() {

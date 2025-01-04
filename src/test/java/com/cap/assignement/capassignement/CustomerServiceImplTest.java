@@ -33,7 +33,7 @@ class CustomerServiceImplTest {
     private TransactionService transactionService;
 
     @InjectMocks
-    private CustomerService customerService = new CustomerServiceImpl(customersRepository, accountsRepository, transactionService);
+    private CustomerServiceImpl customerService;
 
     @BeforeEach
     void setUp() {

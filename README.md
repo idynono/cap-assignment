@@ -24,7 +24,7 @@
 
  to make the project work properly some user are created on the startup of the application in the [data.sql](src/main/resources/data.sql)
 
- the api is protected by basic auth with spring security the info to connect are in the 
+ the api is protected by basic auth with spring security the info to connect are in the [application.properties](src/main/resources/application.properties)
 
 ## Author
 

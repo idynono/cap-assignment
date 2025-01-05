@@ -35,13 +35,17 @@ public class AccountServiceImpl implements AccountService {
         if (customers.isPresent()) {
             Accounts accounts = new Accounts();
             accounts.setCustomers(customers.get());
-            accountsRepository.save(accounts);
-            if (credit != 0){
-                accounts = accountsRepository.findByCustomerID(customerId);
-                Long id  = transactionService.getNextId();
-                transactionService.save(id,accounts.getId(),credit);
+            if (accountsRepository.findByCustomerID(customerId) == null) {
+                accountsRepository.save(accounts);
+                if (credit != 0){
+                    accounts = accountsRepository.findByCustomerID(customerId);
+                    Long id  = transactionService.getNextId();
+                    transactionService.save(id,accounts.getId(),credit);
+                }
+                return true;
+            } else {
+                return false;
             }
-            return true;
         } else {
             return false;
         }

@@ -1,5 +1,6 @@
 package com.cap.assignement.capassignement.controllers;
 
+import com.cap.assignement.capassignement.entities.Customers;
 import com.cap.assignement.capassignement.pojo.Customer;
 import com.cap.assignement.capassignement.service.AccountService;
 import com.cap.assignement.capassignement.service.CustomerService;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Optional;
 
 @RestController
 public class CustomerManagementController {
@@ -45,15 +48,19 @@ public class CustomerManagementController {
     @PostMapping("/accounts")
     public ResponseEntity<String> account(Integer idCustomer, Integer credit ) {
         if (idCustomer == null || idCustomer < 0) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        boolean status = accountService.createAccount(idCustomer, credit);
-        if (status) {
-            return new ResponseEntity<>("", HttpStatus.OK);
+        Optional<Customers> customer = customerService.getCustomerById(idCustomer);
+        if (customer.isPresent()) {
+            boolean status = accountService.createAccount(idCustomer, credit);
+            if (status) {
+                return new ResponseEntity<>("", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
+            }
         } else {
-            return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
     }
 
 

@@ -1,7 +1,6 @@
 package com.cap.assignement.capassignement.pojo;
 
 import com.cap.assignement.capassignement.entities.Accounts;
-import com.cap.assignement.capassignement.entities.Transactions;
 
 import java.util.ArrayList;
 import java.util.List;
